@@ -1,0 +1,36 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+.venv/
+venv/
+
+# Test and coverage
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Environment
+.env
+.env.*
+!.env.example
+
+# Logs and runtime
+logs/*
+!logs/README.md
+*.log
+
+# IDE and OS
+.vscode/
+.idea/
+.DS_Store
+
+# Node / frontend artifacts
+node_modules/
+dist/
+build/
+
+# Docker
+*.pid
