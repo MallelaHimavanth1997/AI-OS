@@ -1,0 +1,41 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+.venv/
+venv/
+
+# Environment
+.env
+.env.*
+!.env.example
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+Thumbs.db
+.DS_Store
+
+# Logs and runtime data
+logs/*
+!logs/.gitkeep
+*.sqlite3
+*.db
+
+# Build artifacts
+dist/
+build/
+*.egg-info/
+
+# Playwright artifacts
+playwright/.auth/
+playwright-report/
+test-results/

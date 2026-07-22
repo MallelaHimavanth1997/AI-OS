@@ -1,0 +1,68 @@
+Himavanth Mallela
+Data Engineer
+Phone: +1 (314) 393-5056
+Email: mallelahimavanth@outlook.com
+
+Professional Summary:
+3 years of experience designing and delivering scalable, secure, cloud-native & on-premises data platforms across AWS, GCP, and Azure, with strong expertise in data security, governance, and enterprise analytics.
+Designed and implemented batch data pipelines using Apache Spark, PySpark, Scala, Python, Databricks, Delta Lake, BigQuery, Snowflake, Teradata, and DBT, ensuring structured, incremental, and reliable data transformations with Medallion Architecture.
+Developed real-time streaming pipelines using Kafka, Palantir Foundry, and MS Fabric, enabling low-latency, scalable, and fault-tolerant data processing.
+Architected and optimized streaming and event-driven systems using AWS Kinesis, Step Functions, GCP Pub/Sub, Azure Event Hubs, Spark Streaming, and Flink, supporting high-throughput, low-latency workloads.
+Built, tuned, and maintained distributed Big Data frameworks with Hadoop, Hive, MapReduce, YARN, Oozie, and Spark, ensuring fault-tolerant, high-performance processing for structured and semi-structured data (XML, JSON, Avro, Parquet).
+Developed and automated ETL/ELT workflows using Airflow (Cloud Composer), Oozie, Informatica, AWS Glue, Azure Data Factory, and custom Python/Shell scripts, integrating ML models for predictive analytics, anomaly detection, and feature engineering using Python, scikit-learn, TensorFlow, SageMaker, and Bedrock.
+Hands-on experience with relational and NoSQL databases including Oracle, PostgreSQL, SQL Server, Teradata, MongoDB, Cassandra, and DynamoDB, supporting data modeling (Star/Snowflake schemas) and data governance.
+Executed enterprise cloud migration initiatives, modernizing on-premise Hadoop and ETL ecosystems into cost-efficient cloud data lakes and warehouses, leveraging AWS, GCP, and Azure services.
+Implemented CI/CD and DevOps automation using Jenkins, Git, Terraform, Docker, and Kubernetes (GKE), and applied security best practices including IAM, encryption, and access controls.
+Delivered analytics and BI solutions using Power BI, Google Data Studio, Tableau, and Business Objects, with monitoring, logging, and alerting implemented via CloudWatch and Stackdriver.
+Experienced in Agile/Scrum environments, contributing to sprint planning, iterative delivery, and continuous improvement.
+
+Technical Skills:
+Cloud Platforms: AWS (S3, Redshift, Glue, Lambda, EMR, Athena, Kinesis), GCP (BigQuery, Cloud Dataflow, Pub/Sub, Composer), Azure (Data Lake, Synapse, Data Factory, MS Fabric)
+Big Data & Streaming: Hadoop, MapReduce, HDFS, Hive, Spark, Flink, Kafka, NiFi, Sqoop, Oozie, YARN
+Databases: Oracle, MySQL, PostgreSQL, SQL Server, Teradata, MongoDB, Cassandra, DynamoDB, Snowflake, Redshift
+Programming Languages: Python, PySpark, Scala, SQL, Shell scripting
+Tools & IDEs: PyCharm, Eclipse, SQL Developer, SSMS, Postman
+Visualization & BI: Tableau, Power BI, Google Data Studio, Looker, matplotlib, ggplot2
+DevOps & CI/CD Tools: Terraform, Jenkins, GitHub Actions, Docker, Kubernetes (GKE/AKS)
+Containerization & Orchestration: Google Kubernetes Engine, Docker, Kubernetes
+Methodologies: Agile, Scrum and TDD(Test Driven Development)
+
+Professional Experience:
+Client: UPL (United Phosphorus Limited), India
+May 2021 – July 2023
+Role: Data Engineer 
+
+Responsibilities:
+• Deployed scalable batch data pipelines across GCP and Azure using Databricks, Apache Spark, PySpark, Scala, Python, Delta Lake, Snowflake, BigQuery, Teradata, and dbt, applying Medallion Architecture for structured and incremental data transformations.
+• Developed real-time streaming pipelines using Apache Beam, Kafka, Flink, NiFi, Palantir Foundry, and MS Fabric, enabling low-latency, event-driven analytics and reliable data processing.
+• Developed event-driven and streaming pipelines using Kafka, Pub/Sub, Azure Event Hubs, Azure Functions, Step Functions, MS Fabric, NiFi, and Apache Beam, enabling real-time analytics, trend detection, and low-latency processing.
+• Migrated legacy Teradata, SQL Server, PostgreSQL, MySQL, and EMR/EHR datasets to cloud platforms with optimized SQL, Python, BTEQ scripts, and SnowSQL, ensuring HIPAA-compliant security, encryption, and governance.
+• Built ELT/ETL workflows with Airflow (Cloud Composer), Oozie, Azure Data Factory, NiFi, Palantir Foundry, and Python/Shell scripts, integrating structured, semi-structured, and unstructured data from APIs, flat files, and cloud storage.
+• Designed and maintained data models, schemas, and pipelines in Snowflake, BigQuery, Azure Synapse Analytics, and Azure SQL, leveraging DBT, UDFs, and stored procedures for performant, compliant analytics.
+• Developed and deployed AI/ML models for fraud detection, anomaly detection, risk scoring, and predictive analytics using Spark MLlib, TensorFlow, PyTorch, Azure ML, Bedrock, and Vertex AI, integrating them into production-scale pipelines.
+• Worked with Hadoop ecosystem (MapReduce, Hive, YARN, HDFS) and NoSQL/graph databases (MongoDB, Cassandra) for batch processing, archival, and efficient analytics workloads.
+• Engineered containerized microservices and hybrid cloud services using Docker, Kubernetes (GKE/AKS), Azure Container Registry (ACR), Terraform, and CI/CD pipelines for high availability, autoscaling, and disaster recovery.
+• Implemented real-time event processing and monitoring using Stackdriver, Azure Monitor, Datadog, and Cloud Logging, ensuring proactive alerting and reliability across pipelines.
+• Optimized performance and cost by designing partitioned/bucketed tables (Parquet + Snappy), query tuning, and cross-cloud Snowflake/GCP integrations, bridging data silos and enabling unified analytics.
+• Applied data governance, lineage tracking, and security across all pipelines using OAuth, SAS tokens, service principals, IAM policies, and encryption, supporting healthcare compliance (HIPAA, CDC, CMS).
+• Delivered BI dashboards and reports using Power BI, Google Data Studio, and Tableau, integrating multiple cloud and on-premises data sources for actionable insights.
+• Built API-based integrations using Azure API Management (APIM) to standardize and secure data access for enterprise reporting and analytics.
+• Collaborated in Agile/Scrum teams, managing the full data lifecycle from ingestion to analytics and ML deployment, using Jira, Confluence, and Git.
+
+Education:
+Master’s in Information Technology | Webster University, Saint Louis, Missouri, USA | 3.9/4.0 GPA
+
+Projects:
+ETL Pipeline for Sales and Inventory Data
+• Developed ingestion and transformation workflows using AWS Glue and PySpark, enabling business users to generate sales reports 30% faster and improving decision-making efficiency.
+• Loaded processed data into Redshift for analytics and reporting, contributing to faster and more accurate business insights.
+
+Real-Time Data Capture Pipeline (Kafka → Lambda → S3)
+• Designed and implemented a streaming ingestion pipeline for near real-time data availability, improving operational responsiveness.
+
+Data Lake Migration Project
+• Led migration of SQL Server tables to AWS S3, designing automated schema validation scripts using Python and Glue crawlers. Reduced data retrieval time by 40% after migration, enhancing data accessibility for analytics teams.
+
+Certifications:
+• AWS Certified Developer – Associate
+• Azure Developer Associate

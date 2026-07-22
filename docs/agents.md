@@ -56,6 +56,63 @@ Output:
 - Keyword analysis
 
 
+## Resume Intelligence Agent
+
+Purpose:
+
+Parse resumes, extract structured career data, generate embeddings, and create ATS-safe resume output.
+
+Input:
+
+- Resume text or file
+- Target role or job description
+
+Output:
+
+- Parsed resume profile
+- Resume embeddings
+- ATS optimized resume
+- Keyword coverage analysis
+
+
+# Job Matching Agent
+
+## Purpose
+
+Compare parsed resumes to parsed job descriptions and rank opportunities.
+
+## Input
+
+- Parsed resume or resume text
+- Job descriptions or parsed job records
+
+## Output
+
+- Match score
+- Priority score
+- Missing skills
+- Ranked opportunities
+
+
+# Resume Tailoring Agent
+
+## Purpose
+
+Generate a truthful ATS-safe tailored resume for a specific target job.
+
+## Input
+
+- Parsed resume or resume text
+- Parsed job or job description
+
+## Output
+
+- Tailored resume document
+- DOCX export
+- PDF export
+- ATS score
+
+
 ---
 
 # Email Agent

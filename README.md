@@ -25,112 +25,59 @@
 ###### \- Integrate automation tools and APIs
 
 ###### 
+# AI-OS
 
-###### \## Architecture
+AI-OS is a local-first, open-source AI operating system for autonomous job search and personal executive assistance. The repository is being built incrementally around a clean, modular architecture so each agent, service, and integration can be developed and tested independently.
 
-###### AI-OS
+## What This System Does
 
-###### │
+- Understands resume content and career goals.
+- Searches jobs continuously during configured working hours.
+- Tailors resumes and cover letters when needed.
+- Applies to jobs where automation is possible.
+- Tracks recruiter activity, Gmail, notifications, and dashboards.
+- Runs locally with privacy-first defaults and open-source infrastructure.
 
-###### ├── agents
+## Core Stack
 
-###### │ ├── job\_search\_agent
+- Python 3.12+
+- FastAPI
+- LangGraph and LangChain
+- Ollama with open-source models
+- PostgreSQL, Qdrant, and Redis
+- Playwright for browser automation
+- n8n for workflow automation
+- Grafana for dashboards
+- Docker and Nginx for deployment
 
-###### │ ├── resume\_agent
+## Repository Layout
 
-###### │ ├── email\_agent
+- [backend](backend)
+- [frontend](frontend)
+- [agents](agents)
+- [memory](memory)
+- [workflows](workflows)
+- [database](database)
+- [dashboard](dashboard)
+- [config](config)
+- [docker](docker)
+- [scripts](scripts)
+- [logs](logs)
+- [docs](docs)
+- [tests](tests)
+- [playwright](playwright)
+- [resumes](resumes)
+- [templates](templates)
+- [emails](emails)
+- [cover_letters](cover_letters)
+- [notifications](notifications)
+- [utils](utils)
+- [api](api)
+- [scheduler](scheduler)
 
-###### │ └── interview\_agent
+## Authoritative Spec
 
-###### │
-
-###### ├── api
-
-###### │
-
-###### ├── dashboard
-
-###### │
-
-###### ├── memory
-
-###### │
-
-###### ├── workflows
-
-###### │
-
-###### ├── notifications
-
-###### │
-
-###### ├── scheduler
-
-###### │
-
-###### └── templates
-
-###### 
-
-###### \## Tech Stack
-
-###### 
-
-###### \- Python
-
+The master project specification is documented in the conversation context and should be reflected in the architecture, module boundaries, and deployment strategy. The docs folder now contains the permanent project knowledge base for future implementation work.
 ###### \- FastAPI
 
-###### \- LangChain / LangGraph
-
-###### \- OpenAI APIs
-
-###### \- n8n Automation
-
-###### \- Vector Databases
-
-###### \- GitHub
-
-###### \- Docker
-
-###### 
-
-###### \## Development Roadmap
-
-###### 
-
-###### \### Phase 1
-
-###### \- Repository setup
-
-###### \- Project architecture
-
-###### \- Documentation
-
-###### 
-
-###### \### Phase 2
-
-###### \- Agent development
-
-###### \- Memory system
-
-###### \- API services
-
-###### 
-
-###### \### Phase 3
-
-###### \- Dashboard
-
-###### \- Automation workflows
-
-###### \- Deployment
-
-###### 
-
-###### \## Author
-
-###### 
-
-###### Himavanth Mallela
 

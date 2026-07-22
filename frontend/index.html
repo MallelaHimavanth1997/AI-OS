@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI-OS | Job Search Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg-primary: #0a0e1a;
+      --bg-secondary: #111827;
+      --bg-card: #1a2235;
+      --bg-card-hover: #1e2a40;
+      --accent-blue: #3b82f6;
+      --accent-violet: #8b5cf6;
+      --accent-cyan: #06b6d4;
+      --accent-green: #10b981;
+      --accent-amber: #f59e0b;
+      --accent-rose: #f43f5e;
+      --text-primary: #f1f5f9;
+      --text-secondary: #94a3b8;
+      --text-muted: #475569;
+      --border: #1e293b;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(ellipse at 20% 50%, rgba(59,130,246,0.05) 0%, transparent 50%),
+                  radial-gradient(ellipse at 80% 20%, rgba(139,92,246,0.05) 0%, transparent 50%),
+                  radial-gradient(ellipse at 50% 80%, rgba(6,182,212,0.03) 0%, transparent 50%);
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .app { position: relative; z-index: 1; }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.25rem 2rem;
+      background: rgba(17,24,39,0.8);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .logo { display: flex; align-items: center; gap: 0.75rem; }
+    .logo-icon {
+      width: 36px; height: 36px;
+      background: linear-gradient(135deg, var(--accent-blue), var(--accent-violet));
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem;
+      box-shadow: 0 0 20px rgba(59,130,246,0.4);
+    }
+    .logo-text {
+      font-size: 1.25rem; font-weight: 800;
+      background: linear-gradient(135deg, #fff, var(--accent-cyan));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+
+    .header-right { display: flex; align-items: center; gap: 1rem; }
+    .status-badge {
+      display: flex; align-items: center; gap: 0.5rem;
+      padding: 0.35rem 0.85rem;
+      background: rgba(16,185,129,0.1);
+      border: 1px solid rgba(16,185,129,0.3);
+      border-radius: 20px; font-size: 0.78rem; font-weight: 500; color: var(--accent-green);
+    }
+    .status-dot {
+      width: 7px; height: 7px; background: var(--accent-green); border-radius: 50%;
+      animation: pulse-green 2s infinite;
+    }
+    @keyframes pulse-green {
+      0%, 100% { opacity: 1; box-shadow: 0 0 6px var(--accent-green); }
+      50% { opacity: 0.6; box-shadow: 0 0 2px var(--accent-green); }
+    }
+
+    .run-btn {
+      display: flex; align-items: center; gap: 0.5rem;
+      padding: 0.5rem 1.25rem;
+      background: linear-gradient(135deg, var(--accent-blue), var(--accent-violet));
+      border: none; border-radius: 8px; color: white;
+      font-size: 0.85rem; font-weight: 600; cursor: pointer; transition: all 0.2s;
+      box-shadow: 0 4px 15px rgba(59,130,246,0.3);
+    }
+    .run-btn:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(59,130,246,0.45); }
+
+    main { padding: 2rem; max-width: 1400px; margin: 0 auto; }
+
+    .section-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.25rem; }
+    .section-title { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--text-muted); }
+
+    .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-bottom: 2rem; }
+    .stat-card {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: 16px; padding: 1.5rem; position: relative; overflow: hidden;
+      transition: all 0.3s;
+    }
+    .stat-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: var(--card-accent, linear-gradient(90deg, var(--accent-blue), var(--accent-violet)));
+    }
+    .stat-card.blue { --card-accent: linear-gradient(90deg, var(--accent-blue), #60a5fa); }
+    .stat-card.violet { --card-accent: linear-gradient(90deg, var(--accent-violet), #a78bfa); }
+    .stat-card.cyan { --card-accent: linear-gradient(90deg, var(--accent-cyan), #22d3ee); }
+    .stat-card.green { --card-accent: linear-gradient(90deg, var(--accent-green), #34d399); }
+
+    .stat-icon { font-size: 1.5rem; margin-bottom: 0.75rem; display: block; }
+    .stat-value { font-size: 2.25rem; font-weight: 800; line-height: 1; margin-bottom: 0.4rem; }
+    .stat-label { font-size: 0.8rem; color: var(--text-secondary); font-weight: 500; }
+
+    .content-grid { display: grid; grid-template-columns: 1fr 380px; gap: 1rem; margin-bottom: 2rem; }
+    .card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; }
+    .card-header { padding: 1.25rem 1.5rem; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
+    .card-title { font-size: 0.95rem; font-weight: 700; display: flex; align-items: center; gap: 0.5rem; }
+    .card-body { padding: 1.5rem; }
+
+    .job-item { display: flex; align-items: center; gap: 1rem; padding: 1rem 1.5rem; border-bottom: 1px solid var(--border); }
+    .job-company-logo { width: 42px; height: 42px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-weight: 800; }
+    .job-info { flex: 1; }
+    .job-title { font-size: 0.875rem; font-weight: 600; margin-bottom: 0.2rem; }
+    .job-meta { font-size: 0.72rem; color: var(--text-secondary); display: flex; gap: 0.75rem; }
+    .job-status { padding: 0.25rem 0.65rem; border-radius: 20px; font-size: 0.7rem; font-weight: 600; }
+    .status-applied { background: rgba(59,130,246,0.15); color: var(--accent-blue); }
+    .status-emailed { background: rgba(16,185,129,0.15); color: var(--accent-green); }
+
+    .notif-item { padding: 0.875rem 1.5rem; border-bottom: 1px solid var(--border); display: flex; gap: 0.75rem; }
+    .notif-text { font-size: 0.8rem; color: var(--text-secondary); }
+    .notif-time { font-size: 0.68rem; color: var(--text-muted); margin-top: 0.25rem; }
+  </style>
+</head>
+<body>
+<div class="app">
+  <header>
+    <div class="logo">
+      <div class="logo-icon">🤖</div>
+      <span class="logo-text">AI-OS</span>
+    </div>
+    <div class="header-right">
+      <div class="status-badge">
+        <span class="status-dot"></span>
+        Agent Active
+      </div>
+      <button class="run-btn" onclick="alert('Running workflow...')">▶ Run Now</button>
+    </div>
+  </header>
+
+  <main>
+    <div class="section-header">
+      <span class="section-title">📊 Today's Overview</span>
+      <span style="font-size:0.75rem; color:var(--text-muted)">Live Updates Active</span>
+    </div>
+    <div class="stats-grid">
+      <div class="stat-card blue">
+        <span class="stat-icon">💼</span>
+        <div class="stat-value">32</div>
+        <div class="stat-label">Jobs Matching</div>
+      </div>
+      <div class="stat-card violet">
+        <span class="stat-icon">⚡</span>
+        <div class="stat-value">Easy Apply</div>
+        <div class="stat-label">Mode Active</div>
+      </div>
+      <div class="stat-card cyan">
+        <span class="stat-icon">🤖</span>
+        <div class="stat-value">Gemini AI</div>
+        <div class="stat-label">Resume Tailoring</div>
+      </div>
+      <div class="stat-card green">
+        <span class="stat-icon">📬</span>
+        <div class="stat-value">Telegram</div>
+        <div class="stat-label">Alerts Enabled</div>
+      </div>
+    </div>
+
+    <div class="content-grid">
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">💼 Target Roles</span>
+        </div>
+        <div style="padding: 1.5rem; display: flex; flex-wrap: wrap; gap: 0.5rem;">
+          <span style="padding:0.4rem 0.8rem; background:rgba(59,130,246,0.1); border:1px solid #3b82f6; border-radius:20px; font-size:0.8rem; color:#60a5fa;">Data Engineer</span>
+          <span style="padding:0.4rem 0.8rem; background:rgba(139,92,246,0.1); border:1px solid #8b5cf6; border-radius:20px; font-size:0.8rem; color:#a78bfa;">Cloud Data Engineer</span>
+          <span style="padding:0.4rem 0.8rem; background:rgba(6,182,212,0.1); border:1px solid #06b6d4; border-radius:20px; font-size:0.8rem; color:#22d3ee;">Big Data Engineer</span>
+          <span style="padding:0.4rem 0.8rem; background:rgba(16,185,129,0.1); border:1px solid #10b981; border-radius:20px; font-size:0.8rem; color:#34d399;">PySpark Engineer</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">📬 System Status</span>
+        </div>
+        <div class="notif-item">
+          <span style="font-size:1.2rem;">✅</span>
+          <div class="notif-text">
+            <strong>System Initialized:</strong> AI-OS modules configured & ready.
+            <div class="notif-time">Just now</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+</body>
+</html>
