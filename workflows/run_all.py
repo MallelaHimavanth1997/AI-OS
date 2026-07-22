@@ -21,12 +21,15 @@ logger = get_logger("workflows.run_all")
 async def main():
     logger.info("Starting AI-OS Master Workflow...")
     
-    # 1. Validate settings
-    settings.validate()
+    # Check dry_run flag from command line or env
+    is_live = "--live" in sys.argv or os.getenv("DRY_RUN", "true").lower() == "false"
+    dry_run = not is_live
+    mode_str = "🚀 LIVE MODE (Submitting real applications)" if is_live else "🔍 DRY RUN MODE (Safe mode, no submits)"
+    logger.info(f"Execution Mode: {mode_str}")
     
     # 2. Notify start via Telegram
     notifier = TelegramNotifier()
-    await notifier.send_message_async("🤖 <b>AI-OS Master Workflow Started!</b>\nSearching LinkedIn for jobs...")
+    await notifier.send_message_async(f"🤖 <b>AI-OS Master Workflow Started!</b>\nMode: {mode_str}\nSearching LinkedIn for jobs...")
     
     # 3. Import browser applier
     applier_path = ROOT_DIR / "browser" / "applier.py"
@@ -34,9 +37,8 @@ async def main():
         sys.path.insert(0, str(ROOT_DIR / "browser"))
         import applier
         logger.info("Running LinkedIn Applier module...")
-        # Run applier in dry run mode or configured mode
         try:
-            await applier.main(dry_run=True)
+            await applier.main(dry_run=dry_run)
             logger.info("LinkedIn Applier completed successfully.")
         except Exception as e:
             logger.error(f"Error executing LinkedIn Applier: {e}")
