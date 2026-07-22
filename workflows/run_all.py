@@ -29,7 +29,7 @@ async def main():
     
     # 2. Notify start via Telegram
     notifier = TelegramNotifier()
-    await notifier.send_message_async(f"🤖 <b>AI-OS Master Workflow Started!</b>\nMode: {mode_str}\nSearching LinkedIn for jobs...")
+    await notifier.send_message(f"🤖 <b>AI-OS Master Workflow Started!</b>\nMode: {mode_str}\nSearching LinkedIn for jobs...")
     
     # 3. Import browser applier
     applier_path = ROOT_DIR / "browser" / "applier.py"
@@ -42,7 +42,7 @@ async def main():
             logger.info("LinkedIn Applier completed successfully.")
         except Exception as e:
             logger.error(f"Error executing LinkedIn Applier: {e}")
-            await notifier.send_error(f"LinkedIn Applier error: {e}")
+            await notifier.send_error_async(f"LinkedIn Applier error: {e}")
     else:
         logger.warning(f"Applier script not found at {applier_path}")
         
