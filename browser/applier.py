@@ -372,49 +372,53 @@ async def main(dry_run=True):
         
         # 1. Login verification
         logged_in = await check_login_and_authenticate(page)
-        await context.close()
         
         if not logged_in:
+            try:
+                await context.close()
+            except Exception:
+                pass
             # Relaunch headed for manual login
             await headed_login_session()
-            # Relaunch script
-            async with async_playwright() as p2:
-                context = await get_browser_context(p2)
-                page = await context.new_page()
-                logged_in = await check_login_and_authenticate(page)
-                if not logged_in:
-                    print("🤖 [Robot]: Relaunch authentication failed.")
-                    return
-        
-        # Re-initialize browser context for search runs
-        async with async_playwright() as p_run:
-            context = await get_browser_context(p_run)
+            # Relaunch context after manual login
+            context = await get_browser_context(p)
             page = await context.new_page()
+            logged_in = await check_login_and_authenticate(page)
+            if not logged_in:
+                print("🤖 [Robot]: Relaunch authentication failed.")
+                return
+        
+        easy_applied_total = 0
+        emails_sent_total = 0
+        
+        # Loop through job titles
+        for title in JOB_TITLES:
+            # Part 1: Jobs Tab
+            easy_applied = await process_jobs_tab(page, title, dry_run)
+            easy_applied_total += easy_applied
             
-            easy_applied_total = 0
-            emails_sent_total = 0
-            
-            # Loop through job titles
-            for title in JOB_TITLES:
-                # Part 1: Jobs Tab
-                easy_applied = await process_jobs_tab(page, title, dry_run)
-                easy_applied_total += easy_applied
-                
-                # Part 2: Posts Feed
-                emails_sent = await process_posts_feed(page, title, dry_run)
-                emails_sent_total += emails_sent
-            
-            # Final Report
-            report = f"""🤖 <b>Job Search Report:</b>
+            # Part 2: Posts Feed
+            emails_sent = await process_posts_feed(page, title, dry_run)
+            emails_sent_total += emails_sent
+        
+        # Final Report
+        report = f"""🤖 <b>Job Search Report:</b>
 - Easy Apply Submissions: {easy_applied_total}
 - Recruiter Emails Sent: {emails_sent_total}
 - Mode: {"Dry Run (No Submits)" if dry_run else "Live Applications"}"""
-            send_telegram_message(report)
-            print(report)
-            
-            # Clean up temporary PDF
-            if os.path.exists(TAILORED_PDF_PATH):
+        send_telegram_message(report)
+        print(report)
+        
+        # Clean up temporary PDF
+        if os.path.exists(TAILORED_PDF_PATH):
+            try:
                 os.remove(TAILORED_PDF_PATH)
+            except Exception:
+                pass
+        try:
+            await context.close()
+        except Exception:
+            pass
 
 if __name__ == "__main__":
     # Check arguments: "live" mode runs actual submissions, default is "dry-run"
