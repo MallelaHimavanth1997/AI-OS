@@ -30,18 +30,42 @@ def load_env():
 # Load keys
 load_env()
 
-# Import our helper scripts
-from tailor import tailor_resume
-from notifier import send_telegram_message
+# Import notifications
+try:
+    from notifications import TelegramNotifier
+    def send_telegram_message(msg):
+        return TelegramNotifier().send_message_sync(msg)
+except ImportError:
+    def send_telegram_message(msg):
+        print(f"[Telegram]: {msg}")
+
+# Import tailor module
+try:
+    from tailor import tailor_resume
+except ImportError:
+    from browser.tailor import tailor_resume
 
 # Configuration
 PERSISTENT_CONTEXT_PATH = os.path.abspath("browser_context")
-RESUME_PATH = os.path.abspath("resume.txt")
+
+def find_resume_path():
+    candidates = [
+        os.path.abspath("resumes/resume.txt"),
+        os.path.join(os.path.dirname(os.path.abspath(__file__)), "../resumes/resume.txt"),
+        os.path.abspath("resume.txt")
+    ]
+    for c in candidates:
+        if os.path.exists(c):
+            return c
+    return candidates[0]
+
+RESUME_PATH = find_resume_path()
 TAILORED_PDF_PATH = os.path.abspath("temp_tailored_resume.pdf")
 
 # Default search configurations
 JOB_TITLES = ["Data Engineer", "Cloud Data Engineer", "Big Data Engineer", "PySpark Engineer"]
 LOCATION = "United States"
+
 
 # Formats: Workplace Type (Remote = 2, Hybrid = 3)
 # URL parameter f_WT=2%2C3 means Remote + Hybrid
